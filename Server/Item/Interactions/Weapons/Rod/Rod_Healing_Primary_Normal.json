@@ -1,0 +1,21 @@
+{
+  "Type": "StatsCondition",
+  "Costs": {
+    "Stamina": 2
+  },
+  "Next": {
+    "Type": "ChangeStat",
+    "StatModifiers": {
+      "Stamina": -2
+    },
+    "Next": {
+      "Type": "ChangeStat",
+      "Behaviour": "Set",
+      "StatModifiers": {
+        "StaminaRegenDelay": -2
+      },
+      "Next": "Rod_Healing_Primary_Normal_Fire"
+    }
+  },
+  "Failed": "Rod_Melee_Fallback"
+}

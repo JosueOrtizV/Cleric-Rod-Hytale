@@ -1,0 +1,60 @@
+{
+  "Type": "StatsCondition",
+  "Costs": {
+    "Stamina": 5
+  },
+  "Next": {
+    "Type": "Parallel",
+    "Interactions": [
+      {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "RunTime": 0.25,
+            "Effects": {
+              "ItemAnimationId": "CastSummonCharged",
+              "WorldSoundEventId": "SFX_Deployable_Totem_Heal_Spawn",
+              "LocalSoundEventId": "SFX_Deployable_Totem_Heal_Spawn"
+            }
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "ChangeStat",
+            "StatModifiers": {
+              "Stamina": -5
+            },
+            "Next": {
+              "Type": "ChangeStat",
+              "Behaviour": "Set",
+              "StatModifiers": {
+                "StaminaRegenDelay": -3
+              },
+              "Effects": {
+                "Particles": [
+                  {
+                    "SystemId": "Totem_Heal_Extra",
+                    "TargetEntityPart": "Entity",
+                    "Scale": 1
+                  }
+                ]
+              },
+              "Next": "Rod_Healing_Aoe_Heal_Next"
+            }
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "ModifyInventory",
+            "AdjustHeldItemDurability": -1
+          }
+        ]
+      }
+    ]
+  },
+  "Failed": "Rod_Melee_Fallback"
+}

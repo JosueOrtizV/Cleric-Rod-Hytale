@@ -1,0 +1,47 @@
+{
+  "Type": "StatsCondition",
+  "Costs": {
+    "SignatureEnergy": 100
+  },
+  "ValueType": "Percent",
+  "Next": {
+    "Type": "Serial",
+    "Interactions": [
+      {
+        "Type": "ChangeStat",
+        "StatModifiers": {
+          "SignatureEnergy": -100
+        },
+        "ValueType": "Percent"
+      },
+      {
+        "Type": "ModifyInventory",
+        "AdjustHeldItemDurability": -1
+      },
+      {
+        "Type": "Simple",
+        "RunTime": 1,
+        "Effects": {
+          "ItemAnimationId": "CastSummon",
+          "WorldSoundEventId": "SFX_Deployable_Totem_Slowing_Spawn",
+          "LocalSoundEventId": "SFX_Deployable_Totem_Slowing_Spawn",
+          "Particles": [
+            {
+              "SystemId": "Totem_Slow_AoE",
+              "TargetEntityPart": "Entity",
+              "Scale": 1,
+              "DetachedFromModel": true
+            },
+            {
+              "SystemId": "Weather_Posion_Smoke",
+              "TargetEntityPart": "Entity",
+              "Scale": 2,
+              "DetachedFromModel": true
+            }
+          ]
+        },
+        "Next": "Rod_Healing_Aoe_Debuff_Next"
+      }
+    ]
+  }
+}

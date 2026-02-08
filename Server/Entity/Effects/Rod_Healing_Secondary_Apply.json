@@ -1,0 +1,9 @@
+{
+  "StatModifiers": {
+    "Health": 20
+  },
+  "Duration": 0.5,
+  "Debuff": false,
+  "StatusEffectIcon": "UI/StatusEffects/AddHealth/Tiny.png",
+  "OverlapBehavior": "Overwrite"
+}

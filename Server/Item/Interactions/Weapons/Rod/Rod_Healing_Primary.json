@@ -1,0 +1,12 @@
+{
+  "Type": "Charging",
+  "Effects": {
+    "ItemAnimationId": "CastSummonCharging"
+  },
+  "AllowIndefiniteHold": true,
+  "HorizontalSpeedMultiplier": 0.5,
+  "Next": {
+    "0": "Rod_Healing_Primary_Normal",
+    "1": "Rod_Healing_Aoe_Heal"
+  }
+}

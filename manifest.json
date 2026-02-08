@@ -1,0 +1,20 @@
+{
+  "Group": "JO",
+  "Name": "ClericRod",
+  "Version": "1.0.1",
+  "Description": "A Vanilla+ style Healing Staff for Clerics. Features custom particles, sounds, and balanced abilities.",
+  "Authors": [
+    {
+      "Name": "Josué Ortiz",
+      "Email": "JosueOrtizz30@outlook.com",
+      "Url": "https://josueortiz.dev/"
+    }
+  ],
+  "Website": "",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

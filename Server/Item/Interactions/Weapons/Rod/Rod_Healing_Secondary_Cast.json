@@ -1,0 +1,25 @@
+{
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "ApplyEffect",
+      "Entity": "User",
+      "EffectId": "Rod_Healing_Secondary_Apply"
+    },
+    {
+      "Type": "ApplyEffect",
+      "Entity": "User",
+      "EffectId": "Rod_Healing_Secondary_Visuals"
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 1.1,
+      "Effects": {
+        "ItemAnimationId": "CastSummon",
+        "WorldSoundEventId": "SFX_Avatar_Powers_Enable",
+        "LocalSoundEventId": "SFX_Avatar_Powers_Enable_Local",
+        "WaitForAnimationToFinish": true
+      }
+    }
+  ]
+}

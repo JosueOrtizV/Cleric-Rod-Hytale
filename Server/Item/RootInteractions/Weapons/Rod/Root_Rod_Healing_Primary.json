@@ -1,0 +1,11 @@
+{
+  "Interactions": [
+    "Rod_Healing_Primary"
+  ],
+  "Tags": {
+    "Attack": [
+      "Ability"
+    ]
+  },
+  "RequireNewClick": true
+}

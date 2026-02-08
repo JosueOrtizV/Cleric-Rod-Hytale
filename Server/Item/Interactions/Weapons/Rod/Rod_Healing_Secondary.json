@@ -1,0 +1,26 @@
+{
+  "Type": "StatsCondition",
+  "Costs": {
+    "Stamina": 3
+  },
+  "Next": {
+    "Type": "Serial",
+    "Interactions": [
+      {
+        "Type": "ChangeStat",
+        "StatModifiers": {
+          "SignatureEnergy": 5,
+          "Stamina": -3,
+          "StaminaRegenDelay": -2.5
+        }
+      },
+      {
+        "Type": "ModifyInventory",
+        "AdjustHeldItemDurability": -1
+      },
+      "Rod_Healing_Secondary_Cast"
+    ]
+  },
+  "CancelOnItemChange": false,
+  "Failed": "Rod_Melee_Fallback"
+}

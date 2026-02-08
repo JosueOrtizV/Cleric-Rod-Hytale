@@ -1,0 +1,37 @@
+{
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1.0,
+          "Effects": {
+            "ItemAnimationId": "CastSummon",
+            "WaitForAnimationToFinish": true
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0.7,
+          "Next": {
+            "Type": "Simple",
+            "RunTime": 0.3,
+            "Effects": {
+              "WorldSoundEventId": "SFX_Staff_Ice_Shoot",
+              "LocalSoundEventId": "SFX_Staff_Ice_Shoot"
+            },
+            "Next": {
+              "Type": "Projectile",
+              "Config": "Projectile_Config_Rod_Healing_Normal"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
