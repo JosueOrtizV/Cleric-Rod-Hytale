@@ -1,0 +1,10 @@
+{
+  "Interactions": [
+    "Rod_Healing_Aoe_Debuff"
+  ],
+  "Tags": {
+    "Attack": [
+      "Ability"
+    ]
+  }
+}

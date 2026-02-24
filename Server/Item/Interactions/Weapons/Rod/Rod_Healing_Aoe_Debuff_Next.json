@@ -1,0 +1,273 @@
+{
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "Entity": "User",
+          "EffectId": {
+            "Duration": 6,
+            "Debuff": false,
+            "StatModifiers": {
+              "Health": 10
+            },
+            "DamageCalculatorCooldown": 0.5,
+            "StatusEffectIcon": "UI/StatusEffects/AddHealth/Tiny.png",
+            "OverlapBehavior": "Extend"
+          }
+        },
+        {
+          "Type": "ApplyEffect",
+          "Entity": "User",
+          "EffectId": {
+            "Duration": 0.5,
+            "Debuff": false,
+            "ApplicationEffects": {
+              "EntityTopTint": "#02de45",
+              "Particles": [
+                {
+                  "SystemId": "Rod_Healing_Slow_AoE",
+                  "TargetEntityPart": "Entity",
+                  "Scale": 1,
+                  "DetachedFromModel": true
+                },
+                {
+                  "SystemId": "Rod_Healing_Poison_Smoke",
+                  "TargetEntityPart": "Entity",
+                  "Scale": 2,
+                  "DetachedFromModel": true
+                },
+                {
+                  "SystemId": "Effect_Heal",
+                  "TargetEntityPart": "Entity",
+                  "Scale": 2,
+                  "Color": "#00ff72",
+                  "DetachedFromModel": true
+                }
+              ],
+              "LocalSoundEventId": "SFX_Deployable_Totem_Heal_Effect_Local"
+            },
+            "OverlapBehavior": "Overwrite"
+          }
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "Entity": "User",
+          "EntityEffectId": "Poison",
+          "Next": {
+            "Type": "ClearEntityEffect",
+            "Entity": "User",
+            "EntityEffectId": "Poison_T1",
+            "Next": {
+              "Type": "ClearEntityEffect",
+              "Entity": "User",
+              "EntityEffectId": "Poison_T2",
+              "Next": {
+                "Type": "ClearEntityEffect",
+                "Entity": "User",
+                "EntityEffectId": "Poison_T3",
+                "Next": {
+                  "Type": "ClearEntityEffect",
+                  "Entity": "User",
+                  "EntityEffectId": "Burn",
+                  "Next": {
+                    "Type": "ClearEntityEffect",
+                    "Entity": "User",
+                    "EntityEffectId": "Lava_Burn",
+                    "Next": {
+                      "Type": "ClearEntityEffect",
+                      "Entity": "User",
+                      "EntityEffectId": "Slow",
+                      "Next": {
+                        "Type": "ClearEntityEffect",
+                        "Entity": "User",
+                        "EntityEffectId": "Root",
+                        "Next": {
+                          "Type": "ClearEntityEffect",
+                          "Entity": "User",
+                          "EntityEffectId": "Stun",
+                          "Next": {
+                            "Type": "ClearEntityEffect",
+                            "Entity": "User",
+                            "EntityEffectId": "Freeze"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "Type": "ApplyEffect",
+          "Entity": "User",
+          "EffectId": {
+            "Duration": 3,
+            "Debuff": false,
+            "ApplicationEffects": {
+              "HorizontalSpeedMultiplier": 1.5
+            },
+            "OverlapBehavior": "Overwrite"
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Selector",
+          "RunTime": 0.1,
+          "Selector": {
+            "Id": "AOECircle",
+            "Range": 12
+          },
+          "HitEntityRules": [
+            {
+              "Matchers": [
+                {
+                  "Type": "Vulnerable"
+                },
+                {
+                  "Type": "Player",
+                  "Invert": true
+                }
+              ],
+              "Next": {
+                "Interactions": [
+                  {
+                    "Type": "EffectCondition",
+                    "Entity": "Target",
+                    "EntityEffectIds": [
+                      "Immune"
+                    ],
+                    "Match": "None",
+                    "Next": {
+                      "Type": "Serial",
+                      "Interactions": [
+                        {
+                          "Type": "Interrupt",
+                          "Entity": "Target",
+                          "ExcludedTag": "Uninterruptable"
+                        },
+                        {
+                          "Type": "ApplyEffect",
+                          "Entity": "Target",
+                          "EffectId": {
+                            "Duration": 2,
+                            "Debuff": true,
+                            "ApplicationEffects": {
+                              "EntityBottomTint": "#ffa93f",
+                              "ScreenEffect": "ScreenEffects/Snow.png",
+                              "EntityTopTint": "#da72ff",
+                              "Particles": [
+                                {
+                                  "SystemId": "Stunned",
+                                  "TargetEntityPart": "Entity",
+                                  "TargetNodeName": "Head"
+                                }
+                              ],
+                              "MovementEffects": {
+                                "DisableAll": true
+                              },
+                              "AbilityEffects": {
+                                "Disabled": [
+                                  "Primary",
+                                  "Secondary",
+                                  "Ability1",
+                                  "Ability3"
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "Type": "ApplyEffect",
+                          "Entity": "Target",
+                          "EffectId": {
+                            "Duration": 8,
+                            "Debuff": true,
+                            "DamageCalculatorCooldown": 2,
+                            "DamageCalculator": {
+                              "BaseDamage": {
+                                "Physical": 15
+                              }
+                            },
+                            "DamageEffects": {
+                              "WorldSoundEventId": "SFX_Effect_Burn_World",
+                              "PlayerSoundEventId": "SFX_Effect_Burn_Local"
+                            },
+                            "ApplicationEffects": {
+                              "EntityBottomTint": "#ff8080",
+                              "EntityTopTint": "#ff0000",
+                              "HorizontalSpeedMultiplier": 0.4,
+                              "Particles": [
+                                {
+                                  "SystemId": "Effect_Poison"
+                                }
+                              ]
+                            },
+                            "StatusEffectIcon": "UI/StatusEffects/Burn.png",
+                            "OverlapBehavior": "Extend"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "Matchers": [
+                {
+                  "Type": "Player"
+                }
+              ],
+              "Next": {
+                "Interactions": [
+                  {
+                    "Type": "ApplyEffect",
+                    "Entity": "Target",
+                    "EffectId": {
+                      "Duration": 6,
+                      "Debuff": false,
+                      "StatModifiers": {
+                        "Health": 10
+                      },
+                      "DamageCalculatorCooldown": 0.5,
+                      "StatusEffectIcon": "UI/StatusEffects/AddHealth/Tiny.png",
+                      "OverlapBehavior": "Extend"
+                    }
+                  },
+                  {
+                    "Type": "ApplyEffect",
+                    "Entity": "Target",
+                    "EffectId": {
+                      "Duration": 0.5,
+                      "Debuff": false,
+                      "ApplicationEffects": {
+                        "EntityTopTint": "#02de45",
+                        "Particles": [
+                          {
+                            "SystemId": "Effect_Heal",
+                            "TargetEntityPart": "Entity",
+                            "Scale": 2,
+                            "Color": "#00ff72"
+                          }
+                        ],
+                        "LocalSoundEventId": "SFX_Deployable_Totem_Heal_Effect_Local"
+                      },
+                      "OverlapBehavior": "Overwrite"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

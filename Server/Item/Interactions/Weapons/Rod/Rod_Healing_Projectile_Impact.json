@@ -1,0 +1,24 @@
+{
+  "Type": "Simple",
+  "Effects": {
+    "WorldSoundEventId": "SFX_Staff_Flame_Fireball_Impact",
+    "Particles": [
+      {
+        "SystemId": "Rod_Healing_Impact",
+        "TargetEntityPart": "Entity",
+        "Scale": 0.1
+      },
+      {
+        "SystemId": "Rod_Healing_Fragments",
+        "TargetEntityPart": "Entity",
+        "Scale": 1
+      },
+      {
+        "SystemId": "Rod_Healing_Poison",
+        "TargetEntityPart": "Entity",
+        "Scale": 1
+      }
+    ]
+  },
+  "RunTime": 0
+}

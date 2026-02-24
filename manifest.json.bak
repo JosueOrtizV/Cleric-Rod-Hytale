@@ -1,0 +1,20 @@
+{
+  "Group": "JosuéOrtiz",
+  "Name": "RodWeapon",
+  "Version": "1.0.0",
+  "Description": "",
+  "Authors": [
+    {
+      "Name": "Josué Ortiz",
+      "Email": "JosueOrtizz30@outlook.com",
+      "Url": "https://josueortiz.dev/"
+    }
+  ],
+  "Website": "",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

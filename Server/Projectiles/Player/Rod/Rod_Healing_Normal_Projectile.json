@@ -1,0 +1,113 @@
+{
+  "Appearance": "Eye_Void_Blast",
+  "PitchAdjustShot": true,
+  "SticksVertically": true,
+  "MuzzleVelocity": 20,
+  "TerminalVelocity": 50,
+  "Gravity": 0,
+  "Damage": 1,
+  "DeathEffectsOnHit": true,
+  "TimeToLive": 2.5,
+  "DeadTimeMiss": 0,
+  "DepthShot": 1,
+  "DeathParticles": {
+    "SystemId": "VoidImpact"
+  },
+  "Interactions": {
+    "ProjectileHit": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0,
+          "Effects": {
+            "WorldSoundEventId": "SFX_Staff_Ice_Shoot",
+            "WorldParticles": [
+              {
+                "SystemId": "Impact_Poison"
+              }
+            ]
+          }
+        },
+        {
+          "Type": "EffectCondition",
+          "Entity": "Target",
+          "EntityEffectIds": [
+            "Immune"
+          ],
+          "Match": "None",
+          "Next": {
+            "Type": "Serial",
+            "Interactions": [
+              {
+                "Type": "ApplyEffect",
+                "Entity": "Target",
+                "EffectId": {
+                  "Duration": 5,
+                  "Debuff": true,
+                  "ApplicationEffects": {
+                    "EntityBottomTint": "#ff8080",
+                    "EntityTopTint": "#ff0000",
+                    "HorizontalSpeedMultiplier": 0.35,
+                    "Particles": [
+                      {
+                        "SystemId": "Effect_Poison",
+                        "TargetEntityPart": "Entity"
+                      }
+                    ]
+                  },
+                  "StatusEffectIcon": "UI/StatusEffects/Burn.png",
+                  "DamageCalculatorCooldown": 1.0,
+                  "DamageCalculator": {
+                    "BaseDamage": {
+                      "Physical": 2
+                    }
+                  },
+                  "DamageEffects": {
+                    "WorldSoundEventId": "SFX_Effect_Burn_World",
+                    "PlayerSoundEventId": "SFX_Effect_Burn_Local"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    },
+    "ProjectileMiss": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0,
+          "Effects": {
+            "WorldSoundEventId": "SFX_Staff_Ice_Shoot",
+            "WorldParticles": [
+              {
+                "SystemId": "Impact_Poison"
+              }
+            ]
+          }
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    }
+  },
+  "VerticalCenterShot": 0.1,
+  "HitParticles": {
+    "SystemId": "VoidImpact"
+  },
+  "HorizontalCenterShot": -0.25,
+  "ProjectileConfigId": "Rod_Healing_Normal_Projectile_Config"
+}

@@ -1,0 +1,137 @@
+{
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "Entity": "User",
+          "EffectId": {
+            "Duration": 1,
+            "Debuff": false,
+            "ApplicationEffects": {
+              "EntityTopTint": "#02de45",
+              "ScreenEffect": "ScreenEffects/Immune.png",
+              "Particles": [
+                {
+                  "SystemId": "Totem_Heal_AoE",
+                  "DetachedFromModel": true,
+                  "Scale": 1
+                },
+                {
+                  "SystemId": "Effect_Heal",
+                  "TargetEntityPart": "Self",
+                  "Scale": 3,
+                  "Color": "#00ff72"
+                }
+              ],
+              "LocalSoundEventId": "SFX_Deployable_Totem_Heal_Effect_Local"
+            },
+            "OverlapBehavior": "Overwrite"
+          }
+        },
+        {
+          "Type": "ApplyEffect",
+          "Entity": "User",
+          "EffectId": {
+            "StatModifiers": {
+              "Health": 10
+            },
+            "Duration": 5,
+            "Debuff": false,
+            "DamageCalculatorCooldown": 1,
+            "StatusEffectIcon": "UI/StatusEffects/AddHealth/Tiny.png",
+            "OverlapBehavior": "Extend"
+          }
+        },
+        {
+          "Type": "ChangeStat",
+          "StatModifiers": {
+            "SignatureEnergy": 15
+          }
+
+        },
+        {
+          "Type": "ClearEntityEffect",
+          "Entity": "User",
+          "EntityEffectId": "Poison",
+          "Next": {
+            "Type": "ClearEntityEffect",
+            "Entity": "User",
+            "EntityEffectId": "Poison_T1",
+            "Next": {
+              "Type": "ClearEntityEffect",
+              "Entity": "User",
+              "EntityEffectId": "Poison_T2",
+              "Next": {
+                "Type": "ClearEntityEffect",
+                "Entity": "User",
+                "EntityEffectId": "Poison_T3"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Selector",
+          "RunTime": 0.1,
+          "Selector": {
+            "Id": "AOECircle",
+            "Range": 12
+          },
+          "HitEntityRules": [
+            {
+              "Matchers": [
+                {
+                  "Type": "Player"
+                }
+              ],
+              "Next": {
+                "Interactions": [
+                  {
+                    "Type": "ApplyEffect",
+                    "Entity": "Target",
+                    "EffectId": {
+                      "StatModifiers": {
+                        "Health": 10
+                      },
+                      "Duration": 5,
+                      "Debuff": false,
+                      "DamageCalculatorCooldown": 1,
+                      "StatusEffectIcon": "UI/StatusEffects/AddHealth/Tiny.png",
+                      "OverlapBehavior": "Overwrite"
+                    }
+                  },
+                  {
+                    "Type": "ApplyEffect",
+                    "Entity": "Target",
+                    "EffectId": {
+                      "Duration": 1,
+                      "Debuff": false,
+                      "ApplicationEffects": {
+                        "EntityTopTint": "#02de45",
+                        "Particles": [
+                          {
+                            "SystemId": "Effect_Heal",
+                            "TargetEntityPart": "Entity",
+                            "Scale": 2,
+                            "Color": "#00ff72"
+                          }
+                        ],
+                        "LocalSoundEventId": "SFX_Deployable_Totem_Heal_Effect_Local"
+                      },
+                      "OverlapBehavior": "Overwrite"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

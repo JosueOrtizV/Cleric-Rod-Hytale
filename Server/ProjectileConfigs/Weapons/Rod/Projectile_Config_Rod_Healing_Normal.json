@@ -1,0 +1,110 @@
+{
+  "Model": "Skeleton_Mage_Corruption_Orb",
+  "Physics": {
+    "Type": "Standard",
+    "Gravity": 1,
+    "TerminalVelocityAir": 50,
+    "TerminalVelocityWater": 15,
+    "RotationMode": "Velocity",
+    "Bounciness": 0.0,
+    "SticksVertically": true
+  },
+  "LaunchForce": 22,
+  "SpawnOffset": {
+    "X": 0,
+    "Y": 0.1,
+    "Z": -1
+  },
+  "Interactions": {
+    "ProjectileHit": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        "Rod_Healing_Projectile_Impact",
+
+        {
+          "Parent": "DamageEntityParent",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 15
+            }
+          },
+          "DamageEffects": {
+            "Knockback": {
+              "Type": "Force",
+              "Force": 3,
+              "VelocityType": "Add",
+              "VelocityConfig": {
+                "Threshold": 1.0,
+                "Style": "Exp"
+              },
+              "Direction": {
+                "X": 0.0,
+                "Y": 0.5,
+                "Z": -1
+              }
+            }
+          },
+          "EntityStatsOnHit": [
+            {
+              "EntityStatId": "SignatureEnergy",
+              "Amount": 10
+            }
+          ]
+        },
+        {
+          "Type": "EffectCondition",
+          "Entity": "Target",
+          "EntityEffectIds": [
+            "Immune"
+          ],
+          "Match": "None",
+          "Next": {
+            "Type": "ApplyEffect",
+            "Entity": "Target",
+            "EffectId": {
+              "Duration": 5,
+              "Debuff": true,
+              "ApplicationEffects": {
+                "EntityBottomTint": "#ff8080",
+                "EntityTopTint": "#ff0000",
+                "HorizontalSpeedMultiplier": 0.60,
+                "Particles": [
+                  {
+                    "SystemId": "Effect_Poison",
+                    "TargetEntityPart": "Entity"
+                  }
+                ]
+              },
+              "StatusEffectIcon": "UI/StatusEffects/Poison.png",
+              "DamageCalculatorCooldown": 1.0,
+              "DamageCalculator": {
+                "BaseDamage": {
+                  "Physical": 5
+                }
+              }
+            }
+          }
+        },
+
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    },
+    "ProjectileMiss": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        "Rod_Healing_Projectile_Impact",
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    }
+  }
+}
